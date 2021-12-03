@@ -6,7 +6,7 @@ const app = restify.createServer({
   version: '0.0.1'
 });
 
-let port = 4000;
+let port = process.env.PORT;
 
 app.listen(port, () => {
   console.log(`${app.name} listening on http://localhost:${port}/`);

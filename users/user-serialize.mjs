@@ -1,12 +1,9 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
-const mongoUserName = 'rdesai';
-
-const mongoPassword = 'WHZJddYQN87ipbsn';
-
+const mongoConnectionString = process.env.mongoConnectionString;
 (async () => {
-    await mongoose.connect(`mongodb+srv://${mongoUserName}:${mongoPassword}@cluster0.3rw6l.gcp.mongodb.net/IT339`);
+    await mongoose.connect(mongoConnectionString);
   })();
 
 const Schema = mongoose.Schema;
