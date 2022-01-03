@@ -4,6 +4,6 @@
 - The login to update,delete, or create items is:
 - user: rdesai
 - password: password
-- The program can be run using npm start while in the backend directory.
-- The tests can be run using npm test while in the backend directory. 
+- The program can be run using npm start while in the items directory.
+- The tests can be run using npm test while in the items directory. 
 - The live site can be found at https://rdesaiexample.live/
