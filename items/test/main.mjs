@@ -34,4 +34,4 @@ describe('Item Test', function () {
 
 after(function () {
     Item.close();
-  })
+})

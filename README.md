@@ -1,4 +1,5 @@
 - The project I built is to store the ID, name, and price of store items into a database.
+- items is the folder for the backend, ui is the folder for the frontend.
 - Duplicate ID's cannot be stored into the database.
 - A cloud MongoDB database is being used to store data. 
 - The login to update,delete, or create items is:
