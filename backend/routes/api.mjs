@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken';
  import path from "path";
 const router = express.Router();
 
-router.get('/api/items', async (req,resp, next) => {
+router.get('/api/backend', async (req,resp, next) => {
     try {
     resp.json(await Item.list());
     }
@@ -16,7 +16,7 @@ router.get('/api/items', async (req,resp, next) => {
     }
 });
 
- router.get('/api/items/:id', async (req,resp, next) => {
+ router.get('/api/backend/:id', async (req,resp, next) => {
      try {
          resp.json(await Item.get(req.params.id));
      }
@@ -25,7 +25,7 @@ router.get('/api/items', async (req,resp, next) => {
      }
  });
 
- router.post('/api/items/add/', async (req,resp, next) => {
+ router.post('/api/backend/add/', async (req,resp, next) => {
      try {
          resp.json(await Item.create(req.body));
      }
@@ -34,7 +34,7 @@ router.get('/api/items', async (req,resp, next) => {
      }
  });
 
- router.put('/api/items/edit/:id', async (req,resp, next) => {
+ router.put('/api/backend/edit/:id', async (req,resp, next) => {
      try {
          resp.json(await Item.update(req.params.id,req.body));
      }
@@ -43,7 +43,7 @@ router.get('/api/items', async (req,resp, next) => {
      }
  });
 
- router.delete('/api/items/delete/:id', async (req,resp, next) => {
+ router.delete('/api/backend/delete/:id', async (req,resp, next) => {
      try {
          resp.json(await Item.delete(req.params.id));
      }
