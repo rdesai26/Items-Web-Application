@@ -12,7 +12,7 @@ const Homepage = ({token}) => {
         <>
         <h1>Item Store</h1>
             <p>Welcome to Item Store</p>
-            <div style={{textAlign: "left", paddingLeft: "30%"}}>
+            <div className="text-center">
             <p> The project I built is to store the ID, name, and price of grocery store items </p>
             <p>into a database.</p>
             <p> Duplicate ID's cannot be stored into the database.</p>

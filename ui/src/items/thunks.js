@@ -19,6 +19,7 @@ export const loadItems = () => async dispatch => {
 }
 
 export const loginRequest = (username, password) => async dispatch => {
+ //   dispatch(resetLogin());
     try {
         const body = JSON.stringify({username, password});
         const result = await fetch(`/api/users/check/${username}`, {
@@ -27,10 +28,19 @@ export const loginRequest = (username, password) => async dispatch => {
             },
             method: 'post',
             body,
-        })
-        const user = await result.json();
-        dispatch(push('/'));
-        dispatch(userLoginSuccess(user,user.token));
+        });
+        if (result.status != 401)
+        {
+            const user = await result.json();
+            dispatch(push('/'));
+            dispatch(userLoginSuccess(user,user.token));
+            console.log('done');
+        }
+        else if (result.status == 401) {
+            console.log("wrong login");
+        }
+
+
         }
     catch(e) {
 

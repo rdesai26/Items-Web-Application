@@ -29,7 +29,7 @@ return (
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="text" placeholder="Password"  onChange={(event) => {setPassword(event.target.value); setLoggedIn(true);}}/>
+                <Form.Control type="password" placeholder="Password"  onChange={(event) => {setPassword(event.target.value); setLoggedIn(true);}}/>
             </Form.Group>
             < Button variant="primary" type="submit" onClick={(event) => {
              onLoginPressed(username,password);
