@@ -1,12 +1,12 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useState} from 'react';
 import {Alert, Button, Form} from "react-bootstrap";
 import {connect} from 'react-redux';
-import {getToken, getUser} from "../items/selectors";
+import {getLoginAttempt, getToken, getUser} from "../items/selectors";
 import {loginRequest} from "../items/thunks";
 
 
 
-const Login = ({user, token, onLoginPressed}) => {
+const Login = ({user, token, onLoginPressed, loginAttempt}) => {
 
     const [loggedIn, setLoggedIn] = useState();
     const [username, setUsername] = useState('');
@@ -14,7 +14,7 @@ const Login = ({user, token, onLoginPressed}) => {
 
 return (
     <>
-        {loggedIn == false
+        { (loggedIn === false && loginAttempt === 'FAILED')
             ?
             <Alert variant="danger">
                 <p>Invalid Username/Password</p>
@@ -33,6 +33,8 @@ return (
             </Form.Group>
             < Button variant="primary" type="submit" onClick={(event) => {
              onLoginPressed(username,password);
+             console.log("loginAttempt",loginAttempt);
+             console.log("user",user);
              if (!token) {
                  setLoggedIn(false);
              }
@@ -49,6 +51,7 @@ return (
 const mapStateToProps = state => ({
     user: getUser(state),
     token: getToken(state),
+    loginAttempt: getLoginAttempt(state)
 });
 
 const mapDispatchToProps = dispatch => ({

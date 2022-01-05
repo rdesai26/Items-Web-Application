@@ -6,6 +6,7 @@ import Add from './pages/Add';
 import Edit from './pages/Edit';
 import Login from './pages/Login';
 import {PrivateRoute} from './auth/PrivateRoute';
+import NotFound from "./pages/NotFound";
 function App() {
   return (
 
@@ -20,6 +21,7 @@ function App() {
           <PrivateRoute path="/items/edit/:id" exact>
         <Edit/>
       </PrivateRoute>
+          <Route path="" component={NotFound} />
       </Switch>
     </div>
 

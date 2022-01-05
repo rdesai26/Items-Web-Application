@@ -37,3 +37,8 @@ export const USER_LOGOUT_SUCCESS = 'USER_LOGOUT_SUCCESS';
 export const userLogoutSuccess = () => ({
     type: USER_LOGOUT_SUCCESS,
 });
+
+export const RESET_LOGIN = 'RESET_LOGIN';
+export const resetLogin = () => ({
+    type: RESET_LOGIN,
+});

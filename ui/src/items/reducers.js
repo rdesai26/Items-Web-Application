@@ -2,7 +2,7 @@ import {
     CREATE_ITEM,
     DELETE_ITEM,
     EDIT_ITEM,
-    LOAD_ITEMS_SUCCESS,
+    LOAD_ITEMS_SUCCESS, RESET_LOGIN,
     USER_LOGIN_FAILURE,
     USER_LOGIN_SUCCESS,
     USER_LOGOUT_SUCCESS
@@ -53,7 +53,7 @@ export const items = (state = initialItemsState,action) => {
     }
 }
 
-const initialUserState = {isLoggedIn: false, data: [], token: ''};
+const initialUserState = {isLoggedIn: false, data: [], token: '', loginAttempt: ''};
 
 export const users = (state = initialUserState,action) => {
     const {type, payload} = action;
@@ -70,6 +70,7 @@ export const users = (state = initialUserState,action) => {
         case USER_LOGIN_FAILURE: {
             return {
                 ...state,
+                loginAttempt: 'FAILED',
             }
         }
         case USER_LOGOUT_SUCCESS: {
@@ -78,7 +79,14 @@ export const users = (state = initialUserState,action) => {
                 isLoggedIn: false,
                 token: '',
                 data: {},
-            };
+                loginAttempt: 'SUCCESS'
+            }
+        };
+        case RESET_LOGIN: {
+                return {
+                    ...state,
+                    loginAttempt: '',
+                };
         }
         default:
             return state;

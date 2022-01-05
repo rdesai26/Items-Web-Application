@@ -4,7 +4,7 @@ import {
     deleteItem,
     loadItemsSuccess,
     userLoginSuccess,
-    userLogoutSuccess
+    userLogoutSuccess, userLoginFailure, resetLogin
 } from "./actions";
 import { push } from 'connected-react-router'
 export const loadItems = () => async dispatch => {
@@ -19,7 +19,7 @@ export const loadItems = () => async dispatch => {
 }
 
 export const loginRequest = (username, password) => async dispatch => {
- //   dispatch(resetLogin());
+    dispatch(resetLogin());
     try {
         const body = JSON.stringify({username, password});
         const result = await fetch(`/api/users/check/${username}`, {
@@ -37,7 +37,7 @@ export const loginRequest = (username, password) => async dispatch => {
             console.log('done');
         }
         else if (result.status == 401) {
-            console.log("wrong login");
+            dispatch(userLoginFailure());
         }
 
 
@@ -49,6 +49,7 @@ export const loginRequest = (username, password) => async dispatch => {
 
 export const logoutRequest = () => async dispatch => {
     dispatch(userLogoutSuccess());
+    dispatch(resetLogin());
     localStorage.clear();
 }
 
