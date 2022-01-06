@@ -4,7 +4,7 @@ import {
     deleteItem,
     loadItemsSuccess,
     userLoginSuccess,
-    userLogoutSuccess, userLoginFailure, resetLogin
+    userLogoutSuccess, userLoginFailure, resetLogin, setFirstName
 } from "./actions";
 import { push } from 'connected-react-router'
 export const loadItems = () => async dispatch => {
@@ -12,6 +12,20 @@ export const loadItems = () => async dispatch => {
         const result = await fetch('/api/items');
         const items = await result.json();
         dispatch(loadItemsSuccess(items));
+    }
+    catch(e) {
+        console.error(e);
+    }
+}
+
+export const getFirstName = (username) => async dispatch => {
+    try {
+        console.log(username);
+        const result = await fetch(`/api/users/${username}`);
+        const user = await result.json();
+        const firstName = user.firstName;
+        console.log(firstName);
+        dispatch(setFirstName(firstName));
     }
     catch(e) {
         console.error(e);
@@ -29,14 +43,21 @@ export const loginRequest = (username, password) => async dispatch => {
             method: 'post',
             body,
         });
-        if (result.status != 401)
+        console.log(result);
+        console.log(result.status);
+        if (result.status === 200)
         {
             const user = await result.json();
-            dispatch(push('/'));
+            dispatch(getFirstName(username));
             dispatch(userLoginSuccess(user,user.token));
+            dispatch(push('/'));
+
+    /*     setTimeout(() => {
+             dispatch(push('/'));
+         },500); */ //delay to show success alert not necessary to have in setTimeout block
             console.log('done');
         }
-        else if (result.status == 401) {
+        else if (result.status === 401) {
             dispatch(userLoginFailure());
         }
 
@@ -51,6 +72,7 @@ export const logoutRequest = () => async dispatch => {
     dispatch(userLogoutSuccess());
     dispatch(resetLogin());
     localStorage.clear();
+    dispatch(push('/'));
 }
 
 export const addItemRequest = (id,name,price) => async dispatch => {
@@ -106,3 +128,4 @@ export const editItemRequest = (id,name,price) => async dispatch => {
         console.error(e);
     }
 }
+

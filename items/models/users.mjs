@@ -63,11 +63,9 @@ constructor(props) {
     }
 
     async create(data) {
-    console.log("create", data);
         if (data.hasOwnProperty('password')) {
             data.password = await bcrypt.hash(data.password,this.#saltRounds);
         }
-
         return this.user.create(data);
     }
 

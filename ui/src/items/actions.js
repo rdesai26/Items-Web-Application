@@ -42,3 +42,9 @@ export const RESET_LOGIN = 'RESET_LOGIN';
 export const resetLogin = () => ({
     type: RESET_LOGIN,
 });
+
+export const SET_FIRSTNAME = 'SET_FIRSTNAME';
+export const setFirstName = (firstName) => ({
+    type: SET_FIRSTNAME,
+    payload: {firstName},
+});

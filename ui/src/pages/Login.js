@@ -22,6 +22,14 @@ return (
             :
             null
         }
+        { (loginAttempt === 'SUCCESS')
+            ?
+            <Alert variant="success">
+                <p>success</p>
+            </Alert>
+            :
+            null
+        }
         <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Username</Form.Label>

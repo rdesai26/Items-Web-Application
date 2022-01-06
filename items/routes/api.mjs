@@ -61,6 +61,16 @@ router.get('/api/items', async (req,resp, next) => {
      }
  });
 
+ router.get('/api/users/:username', async (req,res,next) => {
+     try {
+         console.log("username",req.params.username);
+         res.json(await User.get(req.params.username));
+     }
+     catch (e) {
+         next(e);
+     }
+ });
+
  router.post('/api/users/check/:username', async (req,res,next) => {
      try {
          const check = await User.check(req.body.username,req.body.password);
